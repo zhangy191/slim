@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jquery Plugin Slim by Yan Zhang</title>
+	<link rel="stylesheet" href="slim.css">
+	<style>
+		.group:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		.slideshow { margin: 0 25px; }
+		.slideshow > div { display: none; }
+		.error { color: #DE4D43; display: none; }
+	</style>
+</head>
+<body>
+	<h1>jQuery Plugin "Slim"</h1>
+
+	<div class="slideshow">
+		<div><h3>1</h3></div>
+		<div><h3>2</h3></div>
+		<div><h3>3</h3></div>
+		<div><h3>4</h3></div>
+		<div><h3>5</h3></div>
+		<div><h3>6</h3></div>
+		<div><h3>7</h3></div>
+		<div><h3>8</h3></div>
+		<div><h3>9</h3></div>
+		<div><h3>10</h3></div>
+		<div><h3>11</h3></div>
+	</div>
+	<br><br>
+	<div>
+		<form class="renderslide">
+			<h3>Change Slideshow Settings</h3>
+			<label for="slidestoshow">Number of Slides to Show: (Please pick a number between 1-10)</label>
+			<br>
+			<input type="text" name="slidestoshow" value="2"><span class="error error-show">Please pick a number between 1-10</span>
+			<br><br>
+			<label for="slidestoscroll">Number of Slides to Scroll: (Please pick a number between 1-10)</label>
+			<br>
+			<input type="text" name="slidestoscroll" value="2"><span class="error error-scroll">Please pick a number between 1-10</span>
+			<br><br>
+			<button type="submit">Render</button>
+		</form>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="slim.js"></script>
+
+	<script>	
+	(function(){
+
+		$('.slideshow').slim();
+
+		$(".renderslide").on('submit', function(e) {		
+			var $this = $(this), slidestoshow, slidestoscroll, errors = 0;
+
+			e.preventDefault();
+			$('.error').hide();
+
+			slidestoshow = $this.find("input[name='slidestoshow']").val();
+			slidestoscroll = $this.find("input[name='slidestoscroll']").val();
+
+			if (isNaN(slidestoshow) || slidestoshow == '' || (slidestoshow < 1 || slidestoshow > 10)) {
+				$this.find('.error-show').show();
+				errors++;
+			}
+			if (isNaN(slidestoscroll) || slidestoscroll == '' || (slidestoscroll < 1 || slidestoscroll > 10)) {
+				$this.find('.error-scroll').show();		
+				errors++;
+			}
+
+			if (errors === 0) {
+				$('.slideshow').slim('destroy');
+				$('.error').hide();
+
+				$('.slideshow').slim({
+					slidesToShow: slidestoshow,
+					slidesToScroll: slidestoscroll
+				});
+
+				$('.slideshow').slim('setDimensions');
+			}
+
+		});
+	})();	
+	</script>
+
+</body>
+</html>

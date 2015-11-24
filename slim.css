@@ -1,0 +1,105 @@
+.slim-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+}
+
+.slim-list {
+	position: relative;
+    display: block !important;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slim-track {
+	position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.slim-slide {
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+
+.slim-slide.slim-active h3 {
+    background-color: #A2CBC9;
+}
+
+.slim-loading .slim-slide {
+	visibility: hidden;
+    display: none;
+}
+
+.slim-initialized .slim-slide {
+	display: block;
+}
+
+.slim-slide h3 {
+    background: #CEE4E3;
+    color: #fff;
+    font-size: 36px;
+    line-height: 100px;
+    margin: 10px;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+}
+
+.slim-prev, .slim-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    padding: 0;
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.slim-prev {
+	left: -25px;
+}
+
+.slim-next {
+	right: -25px;
+}
+
+.slim-prev:before, .slim-next:before {
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slim-prev::before {
+    content: "←";
+}
+
+.slim-next::before {
+    content: "→";
+}
+
+.slim-hidden {
+    display: none;
+}
+
+.slim-arrow.slim-disabled {
+    cursor: default;
+}
+
+.slim-arrow.slim-disabled::before {
+    color: #CCC;
+}
